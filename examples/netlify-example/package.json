@@ -7,6 +7,16 @@
     "lint:fix": "npm run lint --fix",
     "prettier": "prettier --cache --write .",
     "format": "npm run lint:fix && npm run prettier && prisma format",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "dev": "netlify functions:serve"
+  },
+  "dependencies": {
+    "@netlify/functions": "^1.3.0",
+    "@samhwang/trpc-netlify-functions": "*",
+    "@trpc/server": "^10.14.0",
+    "zod": "^3.20.2"
+  },
+  "devDependencies": {
+    "netlify-cli": "^13.0.1"
   }
 }

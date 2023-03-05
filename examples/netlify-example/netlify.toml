@@ -1,0 +1,14 @@
+[build]
+publish = "client"
+
+[functions]
+directory = "backend/src/functions/"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+[dev]
+autoLaunch = true
+functionsPort = 8788
