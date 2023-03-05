@@ -53,14 +53,14 @@ importers:
   examples/netlify-example:
     specifiers:
       '@netlify/functions': ^1.3.0
-      '@samhwang/trpc-netlify-functions': '*'
       '@trpc/server': ^10.14.0
       netlify-cli: ^13.0.1
+      trpc-netlify-functions: '*'
       zod: ^3.20.2
     dependencies:
       '@netlify/functions': 1.4.0
-      '@samhwang/trpc-netlify-functions': link:../../packages/trpc-netlify-functions
       '@trpc/server': 10.14.0
+      trpc-netlify-functions: link:../../packages/trpc-netlify-functions
       zod: 3.21.0
     devDependencies:
       netlify-cli: 13.0.1

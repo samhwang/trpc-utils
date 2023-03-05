@@ -7,7 +7,7 @@ An Adapter to run tRPC Server on Netlify Functions.
 ### Install dependencies
 
 ```shell
-npm install @netlify/functions @trpc/server @samhwang/trpc-netlify-functions
+npm install @netlify/functions @trpc/server trpc-netlify-functions
 ```
 
 ### Create a tRPC Router and context
@@ -52,7 +52,7 @@ and add the adapter in like so.
 // file: netlify/functions/trpc.ts
 import { createContext } from '../../trpc/context';
 import { appRouter } from '../../trpc/router';
-import { netlifyTRPCHandler } from '@samhwang/trpc-netlify-functions';
+import { netlifyTRPCHandler } from 'trpc-netlify-functions';
 
 export const handler = netlifyTRPCHandler({
   router: appRouter,
