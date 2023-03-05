@@ -1,0 +1,18 @@
+node_modules
+.DS_Store
+*.local
+
+# Eslint
+.eslintcache
+
+# Test Coverage
+coverage
+
+# Environment variables
+.env
+
+# Turbo repo cache
+.turbo
+
+# Local Netlify folder
+.netlify
