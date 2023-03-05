@@ -1,6 +1,5 @@
 {
   "name": "trpc-netlify-workspace",
-  "private": true,
   "scripts": {
     "test": "turbo run test",
     "lint": "turbo run lint",
