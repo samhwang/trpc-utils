@@ -1,9 +1,6 @@
 [build]
 publish = "client"
 
-[functions]
-directory = "backend/src/functions/"
-
 [[redirects]]
 from = "/*"
 to = "/index.html"
