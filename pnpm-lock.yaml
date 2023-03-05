@@ -51,7 +51,19 @@ importers:
       typescript: 4.9.5
 
   examples/netlify-example:
-    specifiers: {}
+    specifiers:
+      '@netlify/functions': ^1.3.0
+      '@samhwang/trpc-netlify-functions': '*'
+      '@trpc/server': ^10.14.0
+      netlify-cli: ^13.0.1
+      zod: ^3.20.2
+    dependencies:
+      '@netlify/functions': 1.4.0
+      '@samhwang/trpc-netlify-functions': link:../../packages/trpc-netlify-functions
+      '@trpc/server': 10.14.0
+      zod: 3.21.0
+    devDependencies:
+      netlify-cli: 13.0.1
 
   packages/trpc-netlify-functions:
     specifiers:
@@ -778,6 +790,71 @@ packages:
     resolution: {integrity: sha512-4wMPu9iN3/HL97QblBsBay3E1etIciR84izI3U+4iALY+JHCrI+a2jO0qbAZ/nxKoegypYEaiiqWXylm+/zfrw==}
     dev: true
 
+  /@netlify/build/29.6.3:
+    resolution: {integrity: sha512-y68cVCAMw7UCGYb4rJYU5m5gRa1SAuSexGooToCeqk02/ypVSbRR86501neAHGmO4ZM3x24XUU54fgsQdLup9A==}
+    engines: {node: ^14.16.0 || >=16.0.0}
+    hasBin: true
+    dependencies:
+      '@bugsnag/js': 7.20.0
+      '@netlify/cache-utils': 5.1.2_supports-color@9.3.1
+      '@netlify/config': 20.3.3
+      '@netlify/edge-bundler': 8.9.0
+      '@netlify/framework-info': 9.8.4
+      '@netlify/functions-utils': 5.2.0_supports-color@9.3.1
+      '@netlify/git-utils': 5.1.0
+      '@netlify/plugins-list': 6.66.0
+      '@netlify/run-utils': 5.1.0
+      '@netlify/zip-it-and-ship-it': 8.9.0_supports-color@9.3.1
+      '@sindresorhus/slugify': 2.2.0
+      ansi-escapes: 5.0.0
+      chalk: 5.2.0
+      clean-stack: 4.2.0
+      execa: 6.1.0
+      figures: 4.0.1
+      filter-obj: 3.0.0
+      got: 12.6.0
+      hot-shots: 9.3.0
+      indent-string: 5.0.0
+      is-plain-obj: 4.1.0
+      js-yaml: 4.1.0
+      keep-func-props: 4.0.1
+      locate-path: 7.2.0
+      log-process-errors: 8.0.0
+      map-obj: 5.0.2
+      memoize-one: 6.0.0
+      os-name: 5.1.0
+      p-event: 5.0.1
+      p-every: 2.0.0
+      p-filter: 3.0.0
+      p-locate: 6.0.0
+      p-reduce: 3.0.0
+      path-exists: 5.0.0
+      path-type: 5.0.0
+      pkg-dir: 6.0.1
+      pretty-ms: 7.0.1
+      ps-list: 8.1.1
+      read-pkg-up: 9.1.0
+      readdirp: 3.6.0
+      resolve: 2.0.0-next.4
+      rfdc: 1.3.0
+      safe-json-stringify: 1.2.0
+      semver: 7.3.8
+      string-width: 5.1.2
+      strip-ansi: 7.0.1
+      supports-color: 9.3.1
+      terminal-link: 3.0.0
+      tmp-promise: 3.0.3
+      ts-node: 10.9.1_typescript@4.9.5
+      typescript: 4.9.5
+      uuid: 8.3.2
+      yargs: 17.7.1
+    transitivePeerDependencies:
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - encoding
+    dev: true
+
   /@netlify/build/29.6.3_@types+node@18.14.6:
     resolution: {integrity: sha512-y68cVCAMw7UCGYb4rJYU5m5gRa1SAuSexGooToCeqk02/ypVSbRR86501neAHGmO4ZM3x24XUU54fgsQdLup9A==}
     engines: {node: ^14.16.0 || >=16.0.0}
@@ -1159,7 +1236,6 @@ packages:
     engines: {node: '>=8.3.0'}
     dependencies:
       is-promise: 4.0.0
-    dev: true
 
   /@netlify/git-utils/5.1.0:
     resolution: {integrity: sha512-/OGTTH8wtnTit7ZTL4tUFbys3+zL9I7h82K0nIoQDeGNf4LMbjqgC5TFEsMbK3K/WE/yK5c4V8mQS8BHARHQOQ==}
@@ -1624,7 +1700,6 @@ packages:
 
   /@trpc/server/10.14.0:
     resolution: {integrity: sha512-hNnvwkSfqpIb89CH8pTV8VkldS9qjd3ZxaCgya7CeCk6QeDajT/bRX9bPmrkEe0UQtrbbPU5h47nuMrBsN2ghQ==}
-    dev: true
 
   /@tsconfig/node10/1.0.9:
     resolution: {integrity: sha512-jNsYVVxU8v5g43Erja32laIDHXeoNvFEpX33OK4d6hljo3jDhCBDhx5dhCCTMWUojscpAagGiRkBKxpdl9fxqA==}
@@ -6220,7 +6295,6 @@ packages:
 
   /is-promise/4.0.0:
     resolution: {integrity: sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ==}
-    dev: true
 
   /is-regex/1.1.4:
     resolution: {integrity: sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg==}
@@ -7341,6 +7415,129 @@ packages:
 
   /nested-error-stacks/2.1.1:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
+    dev: true
+
+  /netlify-cli/13.0.1:
+    resolution: {integrity: sha512-1yi9WIvAIhB1gPX8K1dCtkZNZzXG+JkHHj5wSQKqK5LNjTaOQKlbif8MayiCDY9g7hWjclvlw/61DEH3p9lQJw==}
+    engines: {node: ^14.16.0 || >=16.0.0}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@fastify/static': 6.9.0
+      '@netlify/build': 29.6.3
+      '@netlify/config': 20.3.3
+      '@netlify/edge-bundler': 8.9.0
+      '@netlify/framework-info': 9.8.4
+      '@netlify/local-functions-proxy': 1.1.1
+      '@netlify/zip-it-and-ship-it': 8.9.0
+      '@octokit/rest': 19.0.7
+      ansi-escapes: 5.0.0
+      ansi-styles: 5.2.0
+      ansi-to-html: 0.7.2
+      ascii-table: 0.0.9
+      backoff: 2.5.0
+      better-opn: 3.0.2
+      boxen: 7.0.2
+      chalk: 5.2.0
+      chokidar: 3.5.3
+      ci-info: 3.8.0
+      clean-deep: 3.4.0
+      commander: 10.0.0
+      comment-json: 4.2.3
+      concordance: 5.0.4
+      configstore: 5.0.1
+      content-type: 1.0.5
+      cookie: 0.5.0
+      copy-template-dir: 1.4.0
+      cron-parser: 4.7.1
+      debug: 4.3.4
+      decache: 4.6.1
+      dot-prop: 6.0.1
+      dotenv: 16.0.3
+      env-paths: 2.2.1
+      envinfo: 7.8.1
+      etag: 1.8.1
+      execa: 5.1.1
+      express: 4.18.2
+      express-logging: 1.1.1
+      extract-zip: 2.0.1
+      fastify: 4.14.0
+      find-up: 5.0.0
+      flush-write-stream: 2.0.0
+      folder-walker: 3.2.0
+      from2-array: 0.0.4
+      fuzzy: 0.1.3
+      get-port: 5.1.1
+      gh-release-fetch: 3.0.2
+      git-repo-info: 2.1.1
+      gitconfiglocal: 2.1.0
+      hasbin: 1.2.3
+      hasha: 5.2.2
+      http-proxy: 1.18.1_debug@4.3.4
+      http-proxy-middleware: 2.0.6_debug@4.3.4
+      https-proxy-agent: 5.0.1
+      inquirer: 6.5.2
+      inquirer-autocomplete-prompt: 1.4.0_inquirer@6.5.2
+      is-docker: 3.0.0
+      is-plain-obj: 4.1.0
+      is-wsl: 2.2.0
+      isexe: 2.0.0
+      jsonwebtoken: 9.0.0
+      jwt-decode: 3.1.2
+      lambda-local: 2.0.3
+      listr: 0.14.3
+      locate-path: 6.0.0
+      lodash: 4.17.21
+      log-symbols: 4.1.0
+      log-update: 5.0.1
+      minimist: 1.2.8
+      multiparty: 4.2.3
+      netlify: 13.1.2
+      netlify-headers-parser: 7.1.1
+      netlify-onegraph-internal: 0.10.1
+      netlify-redirect-parser: 14.1.1
+      netlify-redirector: 0.4.0
+      node-fetch: 2.6.9
+      node-version-alias: 2.0.0
+      ora: 5.4.1
+      p-filter: 3.0.0
+      p-map: 5.5.0
+      p-wait-for: 3.2.0
+      parallel-transform: 1.2.0
+      parse-github-url: 1.0.2
+      parse-gitignore: 2.0.0
+      path-key: 3.1.1
+      prettyjson: 1.2.5
+      pump: 3.0.0
+      raw-body: 2.5.2
+      read-pkg-up: 7.0.1
+      semver: 7.3.8
+      source-map-support: 0.5.21
+      string-similarity: 4.0.4
+      strip-ansi-control-characters: 2.0.0
+      tabtab: 3.0.2
+      tempy: 3.0.0
+      terminal-link: 2.1.1
+      through2-filter: 3.0.0
+      through2-map: 3.0.0
+      to-readable-stream: 2.1.0
+      toml: 3.0.0
+      ulid: 2.3.0
+      unixify: 1.0.0
+      update-notifier: 6.0.2
+      uuid: 9.0.0
+      wait-port: 1.0.4
+      winston: 3.8.2
+      write-file-atomic: 4.0.2
+    transitivePeerDependencies:
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/express'
+      - '@types/node'
+      - encoding
+      - supports-color
+      - zen-observable
+      - zenObservable
     dev: true
 
   /netlify-cli/13.0.1_@types+node@18.14.6:
@@ -9895,6 +10092,36 @@ packages:
       yn: 3.1.1
     dev: true
 
+  /ts-node/10.9.1_typescript@4.9.5:
+    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': '>=1.2.50'
+      '@swc/wasm': '>=1.2.50'
+      '@types/node': '*'
+      typescript: '>=2.7'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      '@swc/wasm':
+        optional: true
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.9
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.3
+      acorn: 8.8.2
+      acorn-walk: 8.2.0
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 4.9.5
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    dev: true
+
   /tsconfig-paths/3.14.2:
     resolution: {integrity: sha512-o/9iXgCYc5L/JxCHPe3Hvh8Q/2xm5Z+p18PESBU6Ff33695QnCHBEjcytY2q19ua7Mbl/DavtBOLq+oG0RCL+g==}
     dependencies:
@@ -10635,3 +10862,7 @@ packages:
       compress-commons: 4.1.1
       readable-stream: 3.6.1
     dev: true
+
+  /zod/3.21.0:
+    resolution: {integrity: sha512-UYdykTcVxB6lfdyLzAqLyyYAlOcpoluECvjsdoaqfQmz9p+3LRaIqYcNiL/J2kFYp66fBM8wwBvIGVEjq7KtZw==}
+    dev: false
