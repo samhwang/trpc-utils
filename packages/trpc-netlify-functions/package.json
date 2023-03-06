@@ -1,6 +1,6 @@
 {
   "name": "trpc-netlify-functions",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An adapter to run tRPC Server on Netlify Functions",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -14,7 +14,11 @@
     "typecheck": "tsc",
     "release": "pnpm run build && changeset publish"
   },
-  "keywords": ["trpc", "netlify", "typescript"],
+  "keywords": [
+    "trpc",
+    "netlify",
+    "typescript"
+  ],
   "author": "Sam Huynh",
   "license": "MIT",
   "repository": {
