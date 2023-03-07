@@ -4,6 +4,15 @@ import { TRPCResponse } from '@trpc/server/rpc';
 import { HandlerEvent, HandlerContext, Handler } from '@netlify/functions';
 import { URLSearchParams } from 'url';
 
+export interface CreateNetlifyContextOptions {
+  event: HandlerEvent;
+  context: HandlerContext;
+}
+
+type CreateNetlifyContext<TRouter extends AnyRouter> = (
+  opts: CreateNetlifyContextOptions
+) => Promise<inferRouterContext<TRouter>> | inferRouterContext<TRouter>;
+
 interface NetlifyTRPCHandlerProps<TRouter extends AnyRouter> {
   /**
    * The tRPC router to use.
@@ -23,10 +32,7 @@ interface NetlifyTRPCHandlerProps<TRouter extends AnyRouter> {
    * An async function that returns the tRPC context.
    * @see https://trpc.io/docs/context
    */
-  createContext?: (
-    event: HandlerEvent,
-    context: HandlerContext
-  ) => Promise<inferRouterContext<TRouter>> | inferRouterContext<TRouter>;
+  createContext?: CreateNetlifyContext<TRouter>;
 
   /**
    * A function that returns the response meta.
@@ -93,7 +99,7 @@ export function netlifyTRPCHandler<TRouter extends AnyRouter>({
       router,
       batching,
       responseMeta,
-      createContext: async () => createContext?.(event, context),
+      createContext: async () => createContext?.({ event, context }),
       path,
       req,
       error: null,

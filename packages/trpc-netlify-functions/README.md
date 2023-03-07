@@ -35,9 +35,11 @@ export type AppRouter = typeof appRouter;
 ```ts
 // file: trpc/context.ts
 import { inferAsyncReturnType } from '@trpc/server';
+import { CreateNetlifyContextOptions } from 'trpc-netlify-functions';
 
-function createContext(event: HandlerEvent, context: HandlerContext) {
-    return {}; // No Context
+export function createContext({ event, context }: CreateNetlifyContextOptions) {
+  // Empty context
+  return {};
 }
 
 export type Context = inferAsyncReturnType<typeof createContext>;
