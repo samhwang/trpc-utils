@@ -29,6 +29,9 @@ const router = t.router({
   addOne: t.procedure.input(z.object({ counter: z.number().int().min(0) })).mutation(({ input }) => ({
     counter: input.counter + 1,
   })),
+  'baby/shark': t.procedure.query(() => ({
+    text: 'doo doo doo doo',
+  })),
 });
 
 const handler = netlifyTRPCHandler({
@@ -44,7 +47,7 @@ describe('Netlify Adapter tests', () => {
         body: JSON.stringify({}),
         headers: {},
         httpMethod: 'GET',
-        path: 'hello',
+        path: '/.netlify/functions/trpc/hello',
         queryStringParameters: { input: JSON.stringify({ name }) },
       }),
       mockHandlerContext()
@@ -62,7 +65,7 @@ describe('Netlify Adapter tests', () => {
         body: JSON.stringify({}),
         headers: { 'Content-Type': 'application/json', 'X-USER': name },
         httpMethod: 'GET',
-        path: 'hello',
+        path: '/.netlify/functions/trpc/hello',
         queryStringParameters: {},
       }),
       mockHandlerContext()
@@ -82,7 +85,7 @@ describe('Netlify Adapter tests', () => {
         }),
         headers: { 'Content-Type': 'application/json' },
         httpMethod: 'POST',
-        path: 'addOne',
+        path: '/.netlify/functions/trpc/addOne',
         queryStringParameters: {},
       }),
       mockHandlerContext()
@@ -91,5 +94,22 @@ describe('Netlify Adapter tests', () => {
     expect(statusCode).toEqual(200);
     expect(headers).toEqual({ 'Content-Type': 'application/json' });
     expect(JSON.parse(body!)).toEqual({ result: { data: { counter: num + 1 } } });
+  });
+
+  it('should handle if there are multiple slashes in the URL', async () => {
+    const result = await handler(
+      mockHandlerEvent({
+        body: JSON.stringify({}),
+        headers: {},
+        httpMethod: 'GET',
+        path: '/.netlify/functions/trpc/baby/shark',
+        queryStringParameters: {},
+      }),
+      mockHandlerContext()
+    );
+    const { statusCode, headers, body } = result as HandlerResponse;
+    expect(statusCode).toEqual(200);
+    expect(headers).toEqual({ 'Content-Type': 'application/json' });
+    expect(JSON.parse(body!)).toEqual({ result: { data: { text: 'doo doo doo doo' } } });
   });
 });

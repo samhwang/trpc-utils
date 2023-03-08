@@ -80,8 +80,10 @@ function netlifyEventToHTTPRequest(event: HandlerEvent) {
   };
 }
 
-function getTRPCPath(path: HandlerEvent['path'] = '/.netlify/functions/trpc') {
-  return path.substring(path.lastIndexOf('/') + 1);
+function getTRPCPath(path: HandlerEvent['path']) {
+  const NETLIFY_ROOT = '/.netlify/functions/';
+  const queryKey = path.substring(NETLIFY_ROOT.length);
+  return queryKey.substring(queryKey.indexOf('/') + 1);
 }
 
 export function netlifyTRPCHandler<TRouter extends AnyRouter>({
