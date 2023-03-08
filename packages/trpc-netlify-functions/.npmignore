@@ -3,3 +3,5 @@ tsconfig.json
 .changeset
 .eslint*
 .turbo
+coverage
+vitest.config.ts
