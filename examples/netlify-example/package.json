@@ -12,12 +12,12 @@
     "dev": "netlify functions:serve"
   },
   "dependencies": {
-    "@netlify/functions": "^1.3.0",
-    "@trpc/server": "^10.14.0",
+    "@netlify/functions": "^1.4.0",
+    "@trpc/server": "^10.17.0",
     "trpc-netlify-functions": "*",
-    "zod": "^3.20.2"
+    "zod": "^3.21.4"
   },
   "devDependencies": {
-    "netlify-cli": "^13.0.1"
+    "netlify-cli": "^13.1.6"
   }
 }
