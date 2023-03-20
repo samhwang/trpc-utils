@@ -1,6 +1,6 @@
 {
   "name": "trpc-netlify-functions",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "An adapter to run tRPC Server on Netlify Functions",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
