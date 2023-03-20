@@ -1,6 +1,7 @@
 {
   "name": "netlify-example",
   "version": "1.0.0",
+  "private": true,
   "description": "Example for App with Netlify Functions",
   "scripts": {
     "lint": "eslint --cache .",
