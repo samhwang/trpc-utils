@@ -41,7 +41,7 @@ const handler = netlifyTRPCHandler({
 
 describe('Netlify Adapter tests', () => {
   it('should say hello if query string is provided', async () => {
-    const name = faker.name.firstName();
+    const name = faker.person.firstName();
     const result = await handler(
       mockHandlerEvent({
         body: JSON.stringify({}),
@@ -59,7 +59,7 @@ describe('Netlify Adapter tests', () => {
   });
 
   it("should say hello to context user if query string isn't provided", async () => {
-    const name = faker.name.firstName();
+    const name = faker.person.firstName();
     const result = await handler(
       mockHandlerEvent({
         body: JSON.stringify({}),
