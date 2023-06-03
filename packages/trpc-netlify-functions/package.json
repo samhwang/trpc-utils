@@ -6,12 +6,12 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "tsup",
     "lint": "eslint --cache .",
     "lint:fix": "npm run lint --fix",
     "test": "vitest run",
     "prettier": "prettier --cache --write .",
-    "format": "npm run lint:fix && npm run prettier && prisma format",
+    "format": "npm run lint:fix && npm run prettier",
     "typecheck": "tsc",
     "release": "pnpm run build && changeset publish"
   },

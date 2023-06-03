@@ -21,15 +21,14 @@ import { initTRPC } from '@trpc/server';
 export const t = initTRPC.create();
 
 export const userRouter = t.router({
-    me: t.procedure.query((_req) => "hello, it's me"),
+  me: t.procedure.query((_req) => "hello, it's me"),
 });
 
 export const appRouter = t.router({
-    users: userRouter,
+  users: userRouter,
 });
 
 export type AppRouter = typeof appRouter;
-
 ```
 
 ```ts
@@ -65,5 +64,5 @@ export const handler = netlifyTRPCHandler({
 Build and deploy your code, and you can use your Netlify Functions URL to call your function.
 
 | Endpoint   | HTTP URI                                                       |
-|------------|----------------------------------------------------------------|
-| `users.me` | `GET https://<your-site-url>/.netlify/functions/trpc/users.me` | 
+| ---------- | -------------------------------------------------------------- |
+| `users.me` | `GET https://<your-site-url>/.netlify/functions/trpc/users.me` |
