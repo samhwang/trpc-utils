@@ -8,7 +8,7 @@ When I'm not building with a framework (like NextJS), but into 2 separate pieces
 purely with Netlify Serverless Functions, I often run into cases where tRPC's Lambda Adapter cannot be fully used within
 the Netlify Handler, because the event object from Netlify and APIGateway Proxy event object isn't the same.
 
-(An example of this is my [Netlify Fullstack Template](https://github.com/samhwang/netlify-fullstack-template))
+(An example of this is my [Netlify Fullstack Template](https://github.com/samhwang/fullstack-netlify-template))
 
 ## The solution
 
