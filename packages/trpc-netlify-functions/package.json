@@ -7,11 +7,12 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup",
-    "lint": "eslint --cache .",
-    "lint:fix": "npm run lint --fix",
     "test": "vitest run",
-    "prettier": "prettier --cache --write .",
-    "format": "npm run lint:fix && npm run prettier",
+    "ci": "rome ci ./src/**.ts",
+    "lint": "rome check ./src/**.ts",
+    "lint:fix": "rome check --apply ./src/**.ts",
+    "lint:fix:unsafe": "rome check --apply-unsafe ./src/**.ts",
+    "format": "rome format --write ./src/**.ts",
     "typecheck": "tsc",
     "release": "pnpm run build && changeset publish"
   },

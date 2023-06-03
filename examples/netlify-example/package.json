@@ -4,10 +4,11 @@
   "private": true,
   "description": "Example for App with Netlify Functions",
   "scripts": {
-    "lint": "eslint --cache .",
-    "lint:fix": "npm run lint --fix",
-    "prettier": "prettier --cache --write .",
-    "format": "npm run lint:fix && npm run prettier && prisma format",
+    "ci": "rome ci ./netlify ./trpc",
+    "lint": "rome check ./netlify ./trpc",
+    "lint:fix": "rome check --apply ./netlify ./trpc",
+    "lint:fix:unsafe": "rome check --apply-unsafe ./netlify ./trpc",
+    "format": "rome format --write ./netlify ./trpc",
     "typecheck": "tsc",
     "dev": "netlify functions:serve"
   },
