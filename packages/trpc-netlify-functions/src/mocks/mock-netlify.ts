@@ -9,7 +9,7 @@ interface MockEventOptions extends Partial<HandlerEvent> {
   isBase64Encoded?: boolean;
 }
 
-export function mockHandlerEvent({
+export function getMockHandlerEvent({
   body,
   path,
   httpMethod,
@@ -32,7 +32,7 @@ export function mockHandlerEvent({
   };
 }
 
-export function mockHandlerContext(): HandlerContext {
+export function getMockHandlerContext(): HandlerContext {
   return {
     awsRequestId: 'asdfasdf1234',
     callbackWaitsForEmptyEventLoop: false,
@@ -42,11 +42,11 @@ export function mockHandlerContext(): HandlerContext {
     logGroupName: 'fake',
     logStreamName: 'fake',
     memoryLimitInMB: 'fake',
-    done(_error?: Error, result?: any): void {},
+    done(_error?: Error, _result?: unknown): void {},
     fail(_error: Error | string): void {},
     getRemainingTimeInMillis(): number {
       return 10000;
     },
-    succeed(_messageOrObject: any, _object?: any): void {},
+    succeed(_messageOrObject: unknown, _object?: unknown): void {},
   };
 }

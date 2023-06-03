@@ -69,8 +69,7 @@ function netlifyEventToHTTPRequest(event: HandlerEvent) {
     return queryParams;
   }, new URLSearchParams());
 
-  const body: string | null | undefined =
-    event.body && event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString('utf8') : event.body;
+  const body: string | null | undefined = event.body && event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString('utf8') : event.body;
 
   return {
     method: event.httpMethod,
