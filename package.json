@@ -1,5 +1,10 @@
 {
   "name": "trpc-netlify-workspace",
+  "engines": {
+    "node": "^18.0.0",
+    "pnpm": "^8.0.0"
+  },
+  "packageManager": "pnpm@8.6.11",
   "scripts": {
     "test": "turbo run test",
     "lint": "turbo run lint",
