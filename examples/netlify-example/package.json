@@ -15,7 +15,7 @@
   "dependencies": {
     "@netlify/functions": "^1.6.0",
     "@trpc/server": "^10.37.1",
-    "trpc-netlify-functions": "*",
+    "trpc-netlify-functions": "workspace:*",
     "zod": "^3.21.4"
   },
   "devDependencies": {

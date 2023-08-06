@@ -1,27 +1,25 @@
-import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
+import { publicProcedure, router } from './builder';
 
-export const t = initTRPC.create();
-
-export const userRouter = t.router({
-  me: t.procedure.query((_req) => "hello, it's me"),
-  hello: t.procedure
+export const userRouter = router({
+  me: publicProcedure.query((_req) => "hello, it's me"),
+  hello: publicProcedure
     .input(
       z.object({
         name: z.string(),
       })
     )
-    .query(({ input }) => `hello ${input.name}`),
-  changeName: t.procedure
+    .query(({ input }) => `hello ${input}`),
+  changeName: publicProcedure
     .input(
       z.object({
         name: z.string(),
       })
     )
-    .mutation(({ input }) => ({ name: `Mutated ${input.name}` })),
+    .mutation(({ input }) => ({ name: `Mutated ${input}` })),
 });
 
-export const appRouter = t.router({
+export const appRouter = router({
   users: userRouter,
 });
 
