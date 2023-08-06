@@ -14,11 +14,11 @@
   },
   "dependencies": {
     "@netlify/functions": "^1.6.0",
-    "@trpc/server": "^10.29.0",
+    "@trpc/server": "^10.37.1",
     "trpc-netlify-functions": "*",
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "netlify-cli": "^15.3.1"
+    "netlify-cli": "^15.10.0"
   }
 }
