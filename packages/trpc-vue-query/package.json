@@ -1,6 +1,7 @@
 {
   "name": "trpc-vue-query",
   "version": "0.1.0",
+  "private": true,
   "description": "Adapter for tRPC & Vue-Query",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
