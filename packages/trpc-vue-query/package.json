@@ -1,0 +1,36 @@
+{
+  "name": "trpc-vue-query",
+  "version": "0.1.0",
+  "description": "Adapter for tRPC & Vue-Query",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && tsup",
+    "typecheck": "tsc",
+    "test": "vitest run",
+    "lint": "rome check ./src/**.ts",
+    "lint:fix": "rome check --apply ./src/**.ts",
+    "lint:fix:unsafe": "rome check --apply-unsafe ./src/**.ts",
+    "format": "rome format --write ./src/**.ts",
+    "ci": "rome ci ./src/**.ts",
+    "release": "pnpm run build && changeset publish"
+  },
+  "keywords": [
+    "trpc",
+    "vue",
+    "vue-query",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samhwang/trpc-utils.git",
+    "directory": "packages/trpc-vue-query"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^4.18.0",
+    "@trpc/client": "10.37.1",
+    "@trpc/server": "10.37.1"
+  },
+  "devDependencies": {}
+}

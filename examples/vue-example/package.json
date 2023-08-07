@@ -1,0 +1,28 @@
+{
+  "name": "vue-example",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "run-p type-check build-only",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
+  },
+  "dependencies": {
+    "@netlify/functions": "^1.6.0",
+    "@tanstack/vue-query": "^4.32.6",
+    "@trpc/client": "^10.37.1",
+    "@trpc/server": "^10.37.1",
+    "trpc-netlify-functions": "workspace:*",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.0",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/tsconfig": "^0.4.0",
+    "netlify-cli": "^15.10.0",
+    "npm-run-all": "^4.1.5",
+    "vue-tsc": "^1.8.8"
+  }
+}
