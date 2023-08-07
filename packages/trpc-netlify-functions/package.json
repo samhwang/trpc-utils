@@ -29,8 +29,8 @@
     "directory": "packages/trpc-netlify-functions"
   },
   "peerDependencies": {
-    "@netlify/functions": "^1.3.0",
-    "@trpc/server": "^10.14.0"
+    "@netlify/functions": "^1.6.0",
+    "@trpc/server": "^10.37.0"
   },
   "devDependencies": {}
 }
