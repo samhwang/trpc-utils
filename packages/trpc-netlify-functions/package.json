@@ -8,11 +8,11 @@
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
-    "ci": "rome ci ./src/**.ts",
-    "lint": "rome check ./src/**.ts",
-    "lint:fix": "rome check --apply ./src/**.ts",
-    "lint:fix:unsafe": "rome check --apply-unsafe ./src/**.ts",
-    "format": "rome format --write ./src/**.ts",
+    "ci": "biome ci ./src/**.ts",
+    "lint": "biome check ./src/**.ts",
+    "lint:fix": "biome check --apply ./src/**.ts",
+    "lint:fix:unsafe": "biome check --apply-unsafe ./src/**.ts",
+    "format": "biome format --write ./src/**.ts",
     "typecheck": "tsc",
     "release": "pnpm run build && changeset publish"
   },
