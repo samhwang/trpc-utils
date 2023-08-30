@@ -1,9 +1,9 @@
-import { inferAsyncReturnType, initTRPC } from '@trpc/server';
-import { z } from 'zod';
-import { describe, it, expect } from 'vitest';
 import { faker } from '@faker-js/faker';
 import { HandlerResponse } from '@netlify/functions';
-import { netlifyTRPCHandler, CreateNetlifyContextOptions } from './index';
+import { inferAsyncReturnType, initTRPC } from '@trpc/server';
+import { describe, expect, it } from 'vitest';
+import { z } from 'zod';
+import { CreateNetlifyContextOptions, netlifyTRPCHandler } from './index';
 import { getMockHandlerContext, getMockHandlerEvent } from './mocks/mock-netlify';
 
 function createContext({ event }: CreateNetlifyContextOptions) {
