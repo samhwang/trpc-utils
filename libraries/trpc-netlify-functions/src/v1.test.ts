@@ -4,7 +4,7 @@ import { inferAsyncReturnType, initTRPC } from '@trpc/server';
 import { describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
 import { CreateNetlifyContextV1Options, netlifyTRPCHandlerV1 } from './v1';
-import { getMockHandlerContext, getMockHandlerEvent } from './mock-netlify-v1';
+import { getMockHandlerContext, getMockHandlerEvent } from './mock-netlify';
 
 function createContext({ event }: CreateNetlifyContextV1Options) {
   return {

@@ -1,6 +1,6 @@
-import { HandlerContext, HandlerEvent } from '@netlify/functions';
+import { Context, HandlerContext, HandlerEvent } from '@netlify/functions';
 
-interface MockEventOptions extends Partial<HandlerEvent> {
+interface MockHandlerEventOptions extends Partial<HandlerEvent> {
   body: string;
   path: string;
   httpMethod: string;
@@ -9,14 +9,7 @@ interface MockEventOptions extends Partial<HandlerEvent> {
   isBase64Encoded?: boolean;
 }
 
-export function getMockHandlerEvent({
-  body,
-  path,
-  httpMethod,
-  headers,
-  queryStringParameters,
-  isBase64Encoded,
-}: MockEventOptions): HandlerEvent {
+export function getMockHandlerEvent({ body, path, httpMethod, headers, queryStringParameters, isBase64Encoded }: MockHandlerEventOptions): HandlerEvent {
   return {
     body,
     path,
@@ -48,4 +41,14 @@ export function getMockHandlerContext(): HandlerContext {
     },
     succeed(_messageOrObject: unknown, _object?: unknown): void {},
   };
+}
+
+interface MockRequestOptions extends Partial<Request> {}
+
+export function getMockRequest(options: MockRequestOptions): Request {
+  throw new Error('Not implemented')
+}
+
+export function getMockContext(): Context {
+  throw new Error('Not implemented')
 }
