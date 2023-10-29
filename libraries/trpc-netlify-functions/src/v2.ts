@@ -1,5 +1,5 @@
 import { Context, Config } from '@netlify/functions';
-import { AnyRouter, inferRouterContext } from '@trpc/server';
+import { AnyRouter } from '@trpc/server';
 import { HTTPRequest, resolveHTTPResponse } from '@trpc/server/http';
 import { BaseNetlifyTRPCProps } from './base';
 
@@ -8,17 +8,7 @@ export interface CreateNetlifyContextOptions {
   context: Context;
 }
 
-type CreateNetlifyHandlerContext<TRouter extends AnyRouter> = (
-  opts: CreateNetlifyContextOptions
-) => Promise<inferRouterContext<TRouter>> | inferRouterContext<TRouter>;
-
-interface NetlifyTRPCProps<TRouter extends AnyRouter> extends BaseNetlifyTRPCProps<TRouter, Request> {
-  /**
-   * An async function that returns the tRPC context.
-   * @see https://trpc.io/docs/context
-   */
-  createContext?: CreateNetlifyHandlerContext<TRouter>;
-}
+type NetlifyTRPCProps<TRouter extends AnyRouter> = BaseNetlifyTRPCProps<TRouter, Request, CreateNetlifyContextOptions>;
 
 function nativeRequestToHTTPRequest(request: Request): HTTPRequest {
   throw new Error('Not Implemented');

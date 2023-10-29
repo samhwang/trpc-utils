@@ -3,12 +3,22 @@ import { AnyRouter, ProcedureType, TRPCError, inferRouterContext, inferRouterErr
 import { ResponseMeta } from '@trpc/server/http';
 import { TRPCResponse } from '@trpc/server/rpc';
 
-export interface BaseNetlifyTRPCProps<TRouter extends AnyRouter, TEvent extends Request | HandlerEvent> {
+export type CreateNetlifyTRPCContext<TRouter extends AnyRouter, TCreateContextOptions = unknown> = (
+  opts: TCreateContextOptions
+) => Promise<inferRouterContext<TRouter>> | inferRouterContext<TRouter>;
+
+export interface BaseNetlifyTRPCProps<TRouter extends AnyRouter, TEvent extends Request | HandlerEvent, TContextOptions> {
   /**
    * The tRPC router to use.
    * @see https://trpc.io/docs/router
    */
   router: TRouter;
+
+  /**
+   * An async function that returns the tRPC context.
+   * @see https://trpc.io/docs/context
+   */
+  createContext?: CreateNetlifyTRPCContext<TRouter, TContextOptions>;
 
   /**
    * Enable batching

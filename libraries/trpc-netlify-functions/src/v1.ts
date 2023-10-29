@@ -1,6 +1,6 @@
 import { URLSearchParams } from 'url';
 import { Handler, HandlerContext, HandlerEvent } from '@netlify/functions';
-import { AnyRouter, inferRouterContext } from '@trpc/server';
+import { AnyRouter } from '@trpc/server';
 import { HTTPRequest, resolveHTTPResponse } from '@trpc/server/http';
 import { BaseNetlifyTRPCProps } from './base';
 
@@ -9,17 +9,7 @@ export interface CreateNetlifyHandlerContextOptions {
   context: HandlerContext;
 }
 
-type CreateNetlifyContext<TRouter extends AnyRouter> = (
-  opts: CreateNetlifyHandlerContextOptions
-) => Promise<inferRouterContext<TRouter>> | inferRouterContext<TRouter>;
-
-interface NetlifyTRPCHandlerProps<TRouter extends AnyRouter> extends BaseNetlifyTRPCProps<TRouter, HandlerEvent> {
-  /**
-   * An async function that returns the tRPC context.
-   * @see https://trpc.io/docs/context
-   */
-  createContext?: CreateNetlifyContext<TRouter>;
-}
+type NetlifyTRPCHandlerProps<TRouter extends AnyRouter> = BaseNetlifyTRPCProps<TRouter, HandlerEvent, CreateNetlifyHandlerContextOptions>
 
 function netlifyEventToHTTPRequest(event: HandlerEvent): HTTPRequest {
   const query = Object.entries(event.queryStringParameters ?? {}).reduce((queryParams, [key, value]) => {
