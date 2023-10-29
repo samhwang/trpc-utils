@@ -1,65 +1,27 @@
 import { URLSearchParams } from 'url';
 import { Handler, HandlerContext, HandlerEvent } from '@netlify/functions';
-import { AnyRouter, ProcedureType, TRPCError, inferRouterContext, inferRouterError } from '@trpc/server';
-import { ResponseMeta, resolveHTTPResponse } from '@trpc/server/http';
-import { TRPCResponse } from '@trpc/server/rpc';
+import { AnyRouter, inferRouterContext } from '@trpc/server';
+import { HTTPRequest, resolveHTTPResponse } from '@trpc/server/http';
+import { BaseNetlifyTRPCProps } from './base';
 
-export interface CreateNetlifyContextOptions {
+export interface CreateNetlifyHandlerContextOptions {
   event: HandlerEvent;
   context: HandlerContext;
 }
 
 type CreateNetlifyContext<TRouter extends AnyRouter> = (
-  opts: CreateNetlifyContextOptions
+  opts: CreateNetlifyHandlerContextOptions
 ) => Promise<inferRouterContext<TRouter>> | inferRouterContext<TRouter>;
 
-interface NetlifyTRPCHandlerProps<TRouter extends AnyRouter> {
-  /**
-   * The tRPC router to use.
-   * @see https://trpc.io/docs/router
-   */
-  router: TRouter;
-
-  /**
-   * Enable batching
-   * @see https://trpc.io/docs/links/httpBatchLink#disabling-request-batching
-   */
-  batching?: {
-    enabled: boolean;
-  };
-
+interface NetlifyTRPCHandlerProps<TRouter extends AnyRouter> extends BaseNetlifyTRPCProps<TRouter, HandlerEvent> {
   /**
    * An async function that returns the tRPC context.
    * @see https://trpc.io/docs/context
    */
   createContext?: CreateNetlifyContext<TRouter>;
-
-  /**
-   * A function that returns the response meta.
-   * @see https://trpc.io/docs/caching#using-responsemeta-to-cache-responses
-   */
-  responseMeta?: (opts: {
-    data: TRPCResponse<unknown, inferRouterError<TRouter>>[];
-    ctx?: inferRouterContext<TRouter>;
-    paths?: string[];
-    type: ProcedureType | 'unknown';
-    errors: TRPCError[];
-  }) => ResponseMeta;
-
-  /**
-   * A function that is called when an error occurs.
-   * @see https://trpc.io/docs/error-handling#handling-errors
-   */
-  onError?: (opts: {
-    error: TRPCError;
-    type: ProcedureType | 'unknown';
-    path?: string;
-    req: HandlerEvent;
-    input: unknown;
-  }) => void;
 }
 
-function netlifyEventToHTTPRequest(event: HandlerEvent) {
+function netlifyEventToHTTPRequest(event: HandlerEvent): HTTPRequest {
   const query = Object.entries(event.queryStringParameters ?? {}).reduce((queryParams, [key, value]) => {
     if (typeof value === 'undefined') {
       return queryParams;
@@ -79,13 +41,13 @@ function netlifyEventToHTTPRequest(event: HandlerEvent) {
   };
 }
 
-function getTRPCPath(path: HandlerEvent['path']) {
+function getTRPCPath(path: HandlerEvent['path']): string {
   const NETLIFY_ROOT = '/.netlify/functions/';
   const queryKey = path.substring(NETLIFY_ROOT.length);
   return queryKey.substring(queryKey.indexOf('/') + 1);
 }
 
-export function netlifyTRPCHandler<TRouter extends AnyRouter>({
+export function netlifyTRPCHandlerV1<TRouter extends AnyRouter>({
   router,
   batching,
   createContext,

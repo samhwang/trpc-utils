@@ -3,10 +3,10 @@ import { HandlerResponse } from '@netlify/functions';
 import { inferAsyncReturnType, initTRPC } from '@trpc/server';
 import { describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
-import { CreateNetlifyContextOptions, netlifyTRPCHandler } from './v1';
+import { CreateNetlifyHandlerContextOptions, netlifyTRPCHandlerV1 } from './v1';
 import { getMockHandlerContext, getMockHandlerEvent } from './mock-netlify-v1';
 
-function createContext({ event }: CreateNetlifyContextOptions) {
+function createContext({ event }: CreateNetlifyHandlerContextOptions) {
   return {
     user: event.headers['X-USER'],
   };
@@ -37,14 +37,14 @@ const router = t.router({
   }),
 });
 
-const handler = netlifyTRPCHandler({
+const handler = netlifyTRPCHandlerV1({
   router,
   createContext,
 });
 
 const mockHandlerContext = getMockHandlerContext();
 
-describe('Netlify Adapter tests', () => {
+describe('Netlify Adapter V1 tests', () => {
   it('should say hello if query string is provided', async () => {
     const name = faker.person.firstName();
     const result = await handler(
