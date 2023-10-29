@@ -42,7 +42,7 @@ importers:
         specifier: ^7.3.0
         version: 7.3.0
       netlify-cli:
-        specifier: ^16.7.0
+        specifier: ^16.9.3
         version: 16.9.3(@types/node@20.8.9)
       rimraf:
         specifier: ^5.0.5
@@ -69,7 +69,28 @@ importers:
         specifier: ^3.22.4
         version: 3.22.4
 
-  examples/netlify-example:
+  libraries/trpc-netlify-functions:
+    dependencies:
+      '@netlify/functions':
+        specifier: ^2.3.0
+        version: 2.3.0
+      '@trpc/server':
+        specifier: ^10.43.0
+        version: 10.43.0
+
+  libraries/trpc-vue-query:
+    dependencies:
+      '@tanstack/react-query':
+        specifier: ^4.18.0
+        version: 4.36.1(react@18.2.0)
+      '@trpc/client':
+        specifier: ^10.43.0
+        version: 10.43.0(@trpc/server@10.43.0)
+      '@trpc/server':
+        specifier: ^10.43.0
+        version: 10.43.0
+
+  playgrounds/netlify-example:
     dependencies:
       '@netlify/functions':
         specifier: ^2.3.0
@@ -79,16 +100,16 @@ importers:
         version: 10.43.0
       trpc-netlify-functions:
         specifier: workspace:*
-        version: link:../../packages/trpc-netlify-functions
+        version: link:../../libraries/trpc-netlify-functions
       zod:
         specifier: ^3.22.4
         version: 3.22.4
     devDependencies:
       netlify-cli:
-        specifier: ^16.7.0
+        specifier: ^16.9.3
         version: 16.9.3(@types/node@20.8.9)
 
-  examples/react-example:
+  playgrounds/react-example:
     dependencies:
       '@netlify/functions':
         specifier: ^2.3.0
@@ -113,7 +134,7 @@ importers:
         version: 18.2.0(react@18.2.0)
       trpc-netlify-functions:
         specifier: workspace:*
-        version: link:../../packages/trpc-netlify-functions
+        version: link:../../libraries/trpc-netlify-functions
     devDependencies:
       '@types/react':
         specifier: ^18.2.33
@@ -125,10 +146,10 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0(vite@4.5.0)
       netlify-cli:
-        specifier: ^16.7.0
+        specifier: ^16.9.3
         version: 16.9.3(@types/node@20.8.9)
 
-  examples/vue-example:
+  playgrounds/vue-example:
     dependencies:
       '@netlify/functions':
         specifier: ^2.3.0
@@ -144,7 +165,7 @@ importers:
         version: 10.43.0
       trpc-netlify-functions:
         specifier: workspace:*
-        version: link:../../packages/trpc-netlify-functions
+        version: link:../../libraries/trpc-netlify-functions
       vue:
         specifier: ^3.3.7
         version: 3.3.7(typescript@5.2.2)
@@ -159,7 +180,7 @@ importers:
         specifier: ^0.4.0
         version: 0.4.0
       netlify-cli:
-        specifier: ^16.7.0
+        specifier: ^16.9.3
         version: 16.9.3(@types/node@20.8.9)
       npm-run-all:
         specifier: ^4.1.5
@@ -167,27 +188,6 @@ importers:
       vue-tsc:
         specifier: ^1.8.22
         version: 1.8.22(typescript@5.2.2)
-
-  packages/trpc-netlify-functions:
-    dependencies:
-      '@netlify/functions':
-        specifier: ^2.3.0
-        version: 2.3.0
-      '@trpc/server':
-        specifier: ^10.43.0
-        version: 10.43.0
-
-  packages/trpc-vue-query:
-    dependencies:
-      '@tanstack/react-query':
-        specifier: ^4.18.0
-        version: 4.36.1(react@18.2.0)
-      '@trpc/client':
-        specifier: ^10.43.0
-        version: 10.43.0(@trpc/server@10.43.0)
-      '@trpc/server':
-        specifier: ^10.43.0
-        version: 10.43.0
 
 packages:
 
@@ -3080,15 +3080,6 @@ packages:
       path-browserify: 1.0.1
     dev: true
 
-  /@vue/compiler-core@3.3.4:
-    resolution: {integrity: sha512-cquyDNvZ6jTbf/+x+AgM2Arrp6G4Dzbb0R64jiG804HRMfRiFXWI6kqUVqZ6ZR0bQhIoQjB4+2bhNtVwndW15g==}
-    dependencies:
-      '@babel/parser': 7.23.0
-      '@vue/shared': 3.3.4
-      estree-walker: 2.0.2
-      source-map-js: 1.0.2
-    dev: true
-
   /@vue/compiler-core@3.3.7:
     resolution: {integrity: sha512-pACdY6YnTNVLXsB86YD8OF9ihwpolzhhtdLVHhBL6do/ykr6kKXNYABRtNMGrsQXpEXXyAdwvWWkuTbs4MFtPQ==}
     dependencies:
@@ -3096,13 +3087,6 @@ packages:
       '@vue/shared': 3.3.7
       estree-walker: 2.0.2
       source-map-js: 1.0.2
-
-  /@vue/compiler-dom@3.3.4:
-    resolution: {integrity: sha512-wyM+OjOVpuUukIq6p5+nwHYtj9cFroz9cwkfmP9O1nzH68BenTTv0u7/ndggT8cIQlnBeOo6sUT/gvHcIkLA5w==}
-    dependencies:
-      '@vue/compiler-core': 3.3.4
-      '@vue/shared': 3.3.4
-    dev: true
 
   /@vue/compiler-dom@3.3.7:
     resolution: {integrity: sha512-0LwkyJjnUPssXv/d1vNJ0PKfBlDoQs7n81CbO6Q0zdL7H1EzqYRrTVXDqdBVqro0aJjo/FOa1qBAPVI4PGSHBw==}
@@ -3144,8 +3128,8 @@ packages:
     dependencies:
       '@volar/language-core': 1.10.7
       '@volar/source-map': 1.10.7
-      '@vue/compiler-dom': 3.3.4
-      '@vue/shared': 3.3.4
+      '@vue/compiler-dom': 3.3.7
+      '@vue/shared': 3.3.7
       computeds: 0.0.1
       minimatch: 9.0.3
       muggle-string: 0.3.1
@@ -3188,10 +3172,6 @@ packages:
       '@vue/compiler-ssr': 3.3.7
       '@vue/shared': 3.3.7
       vue: 3.3.7(typescript@5.2.2)
-
-  /@vue/shared@3.3.4:
-    resolution: {integrity: sha512-7OjdcV8vQ74eiz1TZLzZP4JwqM5fA94K6yntPS5Z25r9HDuGNzaGdgvwKYq6S+MxwF0TFRwe50fIR/MYnakdkQ==}
-    dev: true
 
   /@vue/shared@3.3.7:
     resolution: {integrity: sha512-N/tbkINRUDExgcPTBvxNkvHGu504k8lzlNQRITVnm6YjOjwa4r0nnbd4Jb01sNpur5hAllyRJzSK5PvB9PPwRg==}

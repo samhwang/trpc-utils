@@ -19,6 +19,6 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "netlify-cli": "^16.7.0"
+    "netlify-cli": "^16.9.3"
   }
 }
