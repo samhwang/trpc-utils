@@ -3,8 +3,8 @@ import { HandlerResponse } from '@netlify/functions';
 import { inferAsyncReturnType, initTRPC } from '@trpc/server';
 import { describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
-import { CreateNetlifyContextOptions, netlifyTRPCHandler } from './index';
-import { getMockHandlerContext, getMockHandlerEvent } from './mocks/mock-netlify';
+import { CreateNetlifyContextOptions, netlifyTRPCHandler } from './v1';
+import { getMockHandlerContext, getMockHandlerEvent } from './mock-netlify-v1';
 
 function createContext({ event }: CreateNetlifyContextOptions) {
   return {
