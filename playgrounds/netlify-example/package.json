@@ -10,7 +10,7 @@
     "lint:fix:unsafe": "biome check --apply-unsafe ./netlify ./trpc",
     "format": "biome format --write ./netlify ./trpc",
     "typecheck": "tsc",
-    "dev": "netlify functions:serve"
+    "dev": "netlify dev"
   },
   "dependencies": {
     "@netlify/functions": "^2.3.0",
