@@ -168,7 +168,7 @@ describe('Netlify Adapter V1 tests', () => {
 
   it('should call the on error callback', async () => {
     const onError = vi.fn();
-    const handler = netlifyTRPCHandler({
+    const handler = netlifyTRPCHandlerV1({
       router,
       createContext,
       onError,
