@@ -1,7 +1,7 @@
 import { inferAsyncReturnType } from '@trpc/server';
-import { CreateNetlifyHandlerContextOptions } from 'trpc-netlify-functions';
+import { CreateNetlifyContextV1Options } from 'trpc-netlify-functions';
 
-export function createContext({ event: _event, context: _context }: CreateNetlifyHandlerContextOptions) {
+export function createContext({ event: _event, context: _context }: CreateNetlifyContextV1Options) {
   return {};
 }
 

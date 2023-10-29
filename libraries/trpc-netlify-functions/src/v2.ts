@@ -3,12 +3,12 @@ import { AnyRouter } from '@trpc/server';
 import { HTTPRequest, resolveHTTPResponse } from '@trpc/server/http';
 import { BaseNetlifyTRPCProps } from './base';
 
-export interface CreateNetlifyContextOptions {
+export interface CreateNetlifyContextV2Options {
   request: Request;
   context: Context;
 }
 
-type NetlifyTRPCProps<TRouter extends AnyRouter> = BaseNetlifyTRPCProps<TRouter, Request, CreateNetlifyContextOptions>;
+type NetlifyTRPCProps<TRouter extends AnyRouter> = BaseNetlifyTRPCProps<TRouter, Request, CreateNetlifyContextV2Options>;
 
 function nativeRequestToHTTPRequest(request: Request): HTTPRequest {
   throw new Error('Not Implemented');

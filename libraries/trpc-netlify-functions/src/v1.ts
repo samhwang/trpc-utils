@@ -4,12 +4,12 @@ import { AnyRouter } from '@trpc/server';
 import { HTTPRequest, resolveHTTPResponse } from '@trpc/server/http';
 import { BaseNetlifyTRPCProps } from './base';
 
-export interface CreateNetlifyHandlerContextOptions {
+export interface CreateNetlifyContextV1Options {
   event: HandlerEvent;
   context: HandlerContext;
 }
 
-type NetlifyTRPCHandlerProps<TRouter extends AnyRouter> = BaseNetlifyTRPCProps<TRouter, HandlerEvent, CreateNetlifyHandlerContextOptions>
+type NetlifyTRPCHandlerProps<TRouter extends AnyRouter> = BaseNetlifyTRPCProps<TRouter, HandlerEvent, CreateNetlifyContextV1Options>
 
 function netlifyEventToHTTPRequest(event: HandlerEvent): HTTPRequest {
   const query = Object.entries(event.queryStringParameters ?? {}).reduce((queryParams, [key, value]) => {
