@@ -3,7 +3,7 @@ import { AnyRouter, ProcedureType, TRPCError, inferRouterContext, inferRouterErr
 import { ResponseMeta } from '@trpc/server/http';
 import { TRPCResponse } from '@trpc/server/rpc';
 
-export interface BaseNetlifyTRPCProps<TRouter extends AnyRouter, TEvent extends Event | HandlerEvent> {
+export interface BaseNetlifyTRPCProps<TRouter extends AnyRouter, TEvent extends Request | HandlerEvent> {
   /**
    * The tRPC router to use.
    * @see https://trpc.io/docs/router
