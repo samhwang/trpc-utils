@@ -3,7 +3,7 @@ import { inferAsyncReturnType, initTRPC } from '@trpc/server';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 import { CreateNetlifyContextV2Options, netlifyTRPCHandlerV2 } from './v2';
-// import { } from './mock-netlify-v2'
+import { getMockContext, getMockRequest } from './mock-netlify';
 
 function createContext({ request }: CreateNetlifyContextV2Options) {
   return {
@@ -46,4 +46,12 @@ describe.todo('Netlify Adapter V2 tests', () => {
   it('should process mutation', async () => {});
 
   it('should handle if there are multiple slashes in the URL', async () => {});
+
+  it('should throw error on empty path', async () => {});
+
+  it('should throw error on path not found', async () => {});
+
+  it('should throw error when procedure throws error', async () => {});
+
+  it('when procedure throws error', async () => {});
 });
