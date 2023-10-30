@@ -1,14 +1,16 @@
-import { Config, Context } from '@netlify/functions';
+// import { Config } from '@netlify/functions';
+import { netlifyTRPCHandlerV2 } from 'trpc-netlify-functions';
+import { appRouter } from '../../trpc/v2/router';
+import { createContext } from '../../trpc/v2/context';
 
-async function test(request: Request, context: Context) {
-  console.log('REQUEST');
-  console.log(request);
-  console.log(config)
-  return new Response('Hello World!');
-}
+// export const config: Config = {
+//   path: '/api/v2-with-config/*',
+// };
 
-export default test;
+const handler = netlifyTRPCHandlerV2({
+  router: appRouter,
+  createContext,
+  // config,
+});
 
-export const config: Config = {
-  path: '/api/v2-with-config/*',
-};
+export default handler;
