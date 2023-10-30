@@ -1,21 +1,15 @@
 {
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
-    "test": {
-      "dependsOn": [],
-      "outputs": []
+    "test": {},
+    "lint": {},
+    "format": {},
+    "typecheck": {},
+    "ci": {
+      "dependsOn": ["test", "lint", "format", "typecheck"]
     },
-    "lint": {
-      "dependsOn": [],
-      "outputs": []
-    },
-    "format": {
-      "dependsOn": [],
-      "outputs": []
-    },
-    "typecheck": {
-      "dependsOn": [],
-      "outputs": []
+    "build": {
+      "dependsOn": ["ci"]
     }
   }
 }

@@ -9,7 +9,9 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "format": "turbo run format",
-    "typecheck": "turbo run typecheck"
+    "typecheck": "turbo run typecheck",
+    "ci": "turbo run ci",
+    "build": "turbo run build"
   },
   "author": "Sam Huynh",
   "devDependencies": {
