@@ -9,7 +9,7 @@ export interface CreateNetlifyContextV1Options {
   context: HandlerContext;
 }
 
-type NetlifyTRPCHandlerProps<TRouter extends AnyRouter> = BaseNetlifyTRPCProps<TRouter, HandlerEvent, CreateNetlifyContextV1Options>
+type NetlifyTRPCHandlerProps<TRouter extends AnyRouter> = BaseNetlifyTRPCProps<TRouter, HandlerEvent, CreateNetlifyContextV1Options>;
 
 function netlifyEventToHTTPRequest(event: HandlerEvent): HTTPRequest {
   const query = Object.entries(event.queryStringParameters ?? {}).reduce((queryParams, [key, value]) => {

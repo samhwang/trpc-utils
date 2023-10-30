@@ -1,4 +1,4 @@
-import { Context, Config } from '@netlify/functions';
+import { Config, Context } from '@netlify/functions';
 import { AnyRouter } from '@trpc/server';
 import { HTTPRequest, resolveHTTPResponse } from '@trpc/server/http';
 import { BaseNetlifyTRPCProps } from './base';

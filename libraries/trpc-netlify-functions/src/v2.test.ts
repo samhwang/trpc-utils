@@ -39,11 +39,11 @@ const handler = netlifyTRPCHandlerV2({
 });
 
 describe.todo('Netlify Adapter V2 tests', () => {
-  it('should say hello if query string is provided', async () => {})
+  it('should say hello if query string is provided', async () => {});
 
-  it("should say hello to context user if query string isn't provided", async () => {})
+  it("should say hello to context user if query string isn't provided", async () => {});
 
-  it('should process mutation', async () => {})
+  it('should process mutation', async () => {});
 
-  it('should handle if there are multiple slashes in the URL', async () => {})
-})
+  it('should handle if there are multiple slashes in the URL', async () => {});
+});

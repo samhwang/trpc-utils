@@ -45,10 +45,10 @@ export function getMockHandlerContext(): HandlerContext {
   };
 }
 
-interface MockRequestOptions extends Partial<Request> {}
+type MockRequestOptions = Partial<Request>;
 
 export function getMockRequest(options: MockRequestOptions): Request {
-  throw new Error('Not implemented')
+  throw new Error('Not implemented');
 }
 
 export function getMockContext(): Context {
@@ -57,7 +57,7 @@ export function getMockContext(): Context {
     cookies: {
       delete: vi.fn(),
       get: vi.fn(),
-      set: vi.fn()
+      set: vi.fn(),
     },
     deploy: { id: 'fake' },
     geo: {
@@ -73,6 +73,6 @@ export function getMockContext(): Context {
     requestId: 'fake',
     rewrite: vi.fn(),
     server: { region: 'local' },
-    site: { id: undefined, name: undefined, url: 'http://localhost:8888' }
-  }
+    site: { id: undefined, name: undefined, url: 'http://localhost:8888' },
+  };
 }
