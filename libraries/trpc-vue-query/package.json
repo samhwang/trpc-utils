@@ -26,7 +26,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/samhwang/trpc-utils.git",
-    "directory": "packages/trpc-vue-query"
+    "directory": "libraries/trpc-vue-query"
   },
   "peerDependencies": {
     "@tanstack/react-query": "^4.18.0",
