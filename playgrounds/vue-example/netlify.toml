@@ -1,4 +1,5 @@
 [build]
+base = "/playgrounds/vue-example"
 framework = "vite"
 publish = "dist"
 
