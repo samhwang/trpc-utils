@@ -48,7 +48,8 @@ export type AppRouter = typeof appRouter;
 ```ts
 // file: trpc/context.ts
 import { inferAsyncReturnType } from '@trpc/server';
-import { CreateNetlifyContextOptions } from 'trpc-netlify-functions';
+import { CreateNetlifyContextV1Options } from 'trpc-netlify-functions'; // For V1 - Lambda compatible
+// import { CreateNetlifyContextV2Options } from 'trpc-netlify-functions'; // For V2
 
 export function createContext({ event, context }: CreateNetlifyContextOptions) {
   // Empty context
@@ -67,11 +68,11 @@ and add the adapter in like so.
 
 ```ts
 // file: netlify/functions/trpc.ts
-import { netlifyTRPCHandler } from 'trpc-netlify-functions';
+import { netlifyTRPCHandlerV1 } from 'trpc-netlify-functions';
 import { createContext } from '../../trpc/context';
 import { appRouter } from '../../trpc/router';
 
-export const handler = netlifyTRPCHandler({
+export const handler = netlifyTRPCHandlerV1({
   router: appRouter,
   createContext,
 });
@@ -82,3 +83,33 @@ Build and deploy your code, and you can use your Netlify Functions URL to call y
 | Endpoint   | HTTP URI                                                       |
 | ---------- | -------------------------------------------------------------- |
 | `users.me` | `GET https://<your-site-url>/.netlify/functions/trpc/users.me` |
+
+### WIP: With Netlify Functions v2 explicit route config
+
+Create a file called `trpc.mts` inside your Netlify Functions folder. Default is: `[PROJECT_DIRECTORY]/netlify/functions`
+and add the adapter in like so.
+
+```ts
+// file: netlify/functions/trpc.ts
+import { Config } from '@netlify/functions';
+import { netlifyTRPCHandlerV2 } from 'trpc-netlify-functions';
+import { createContext } from '../../trpc/context';
+import { appRouter } from '../../trpc/router';
+
+const config: Config = {
+  path: '/api/trpc', // This path here can end with anything, but should end with `/trpc`
+};
+
+const handler = netlifyTRPCHandlerV2({
+  router: appRouter,
+  createContext,
+});
+
+export default handler;
+```
+
+Build and deploy your code, and you can use your Netlify Functions URL to call your function.
+
+| Endpoint   | HTTP URI                                                       |
+| ---------- | -------------------------------------------------------------- |
+| `users.me` | `GET https://<your-site-url>/.netlify/api/trpc/users.me` |
