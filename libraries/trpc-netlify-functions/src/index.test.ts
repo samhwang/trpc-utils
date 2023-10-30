@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { HandlerResponse } from '@netlify/functions';
 import { inferAsyncReturnType, initTRPC } from '@trpc/server';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
 import { CreateNetlifyContextOptions, netlifyTRPCHandler } from './index';
 import { getMockHandlerContext, getMockHandlerEvent } from './mocks/mock-netlify';
@@ -32,6 +32,9 @@ const router = t.router({
   'baby/shark': t.procedure.query(() => ({
     text: 'doo doo doo doo',
   })),
+  'throw/error': t.procedure.query(() => {
+    throw new Error('Got into error path');
+  }),
 });
 
 const handler = netlifyTRPCHandler({
@@ -79,7 +82,7 @@ describe('Netlify Adapter tests', () => {
   });
 
   it('should process mutation', async () => {
-    const num = Number.parseInt(faker.random.numeric(2), 10);
+    const num = Number.parseInt(faker.string.numeric(2), 10);
     const result = await handler(
       getMockHandlerEvent({
         body: JSON.stringify({
@@ -113,5 +116,76 @@ describe('Netlify Adapter tests', () => {
     expect(statusCode).toEqual(200);
     expect(headers).toEqual({ 'Content-Type': 'application/json' });
     expect(JSON.parse(body as string)).toEqual({ result: { data: { text: 'doo doo doo doo' } } });
+  });
+
+  it('should throw error on empty path', async () => {
+    const result = await handler(
+      getMockHandlerEvent({
+        body: JSON.stringify({}),
+        headers: {},
+        httpMethod: 'GET',
+        path: '/.netlify/functions/trpc/',
+        queryStringParameters: {},
+      }),
+      mockHandlerContext
+    );
+    const { statusCode, headers } = result as HandlerResponse;
+    expect(statusCode).toEqual(404);
+    expect(headers).toEqual({ 'Content-Type': 'application/json' });
+  });
+
+  it('should throw error on path not found', async () => {
+    const result = await handler(
+      getMockHandlerEvent({
+        body: JSON.stringify({}),
+        headers: {},
+        httpMethod: 'GET',
+        path: '/.netlify/functions/trpc/throw/error',
+        queryStringParameters: {},
+      }),
+      mockHandlerContext
+    );
+    const { statusCode, headers } = result as HandlerResponse;
+    expect(statusCode).toEqual(500);
+    expect(headers).toEqual({ 'Content-Type': 'application/json' });
+  });
+
+  it('should throw error when procedure throws error', async () => {
+    const result = await handler(
+      getMockHandlerEvent({
+        body: JSON.stringify({}),
+        headers: {},
+        httpMethod: 'GET',
+        path: '/.netlify/functions/trpc/error/path',
+        queryStringParameters: {},
+      }),
+      mockHandlerContext
+    );
+    const { statusCode, headers } = result as HandlerResponse;
+    expect(statusCode).toEqual(404);
+    expect(headers).toEqual({ 'Content-Type': 'application/json' });
+  });
+
+  it('should call the on error callback', async () => {
+    const onError = vi.fn();
+    const handler = netlifyTRPCHandler({
+      router,
+      createContext,
+      onError,
+    });
+    const result = await handler(
+      getMockHandlerEvent({
+        body: JSON.stringify({}),
+        headers: {},
+        httpMethod: 'GET',
+        path: '/.netlify/functions/trpc/error/path',
+        queryStringParameters: {},
+      }),
+      mockHandlerContext
+    );
+    const { statusCode, headers } = result as HandlerResponse;
+    expect(statusCode).toEqual(404);
+    expect(headers).toEqual({ 'Content-Type': 'application/json' });
+    expect(onError).toHaveBeenCalled();
   });
 });

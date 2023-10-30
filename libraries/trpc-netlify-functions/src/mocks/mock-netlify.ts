@@ -26,7 +26,6 @@ export function getMockHandlerEvent({
     isBase64Encoded: isBase64Encoded ?? false,
     multiValueHeaders: {},
     multiValueQueryStringParameters: null,
-    netlifyGraphToken: undefined,
     rawQuery: '',
     rawUrl: '',
   };
