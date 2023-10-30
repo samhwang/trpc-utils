@@ -45,10 +45,12 @@ export function getMockHandlerContext(): HandlerContext {
   };
 }
 
-type MockRequestOptions = Partial<Request>;
+interface MockRequestOptions extends RequestInit {
+  path: string;
+}
 
-export function getMockRequest(options: MockRequestOptions): Request {
-  throw new Error('Not implemented');
+export function getMockRequest({ path, method, body, headers }: MockRequestOptions): Request {
+  return new Request(path, { method, body, headers, });
 }
 
 export function getMockContext(): Context {

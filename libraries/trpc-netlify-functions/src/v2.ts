@@ -19,7 +19,7 @@ function getTRPCPath(request: Request, configPath: Config['path'] = '/api/trpc')
 }
 
 export function netlifyTRPCHandlerV2<TRouter extends AnyRouter>({ router, batching, createContext, responseMeta, onError }: NetlifyTRPCProps<TRouter>) {
-  return async (request: Request, context: Context) => {
+  return async (request: Request, context: Context): Promise<Response> => {
     const req = nativeRequestToHTTPRequest(request);
     const path = getTRPCPath(request, '/api/trpc');
 
@@ -45,10 +45,9 @@ export function netlifyTRPCHandlerV2<TRouter extends AnyRouter>({ router, batchi
       body: string;
     };
 
-    return {
-      statusCode: status,
+    return new Response(body, {
       headers,
-      body,
-    };
+      status,
+    });
   };
 }
