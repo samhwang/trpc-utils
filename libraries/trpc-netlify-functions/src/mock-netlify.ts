@@ -1,4 +1,6 @@
+import { faker } from '@faker-js/faker';
 import { Context, HandlerContext, HandlerEvent } from '@netlify/functions';
+import { vi } from 'vitest';
 
 interface MockHandlerEventOptions extends Partial<HandlerEvent> {
   body: string;
@@ -34,12 +36,12 @@ export function getMockHandlerContext(): HandlerContext {
     logGroupName: 'fake',
     logStreamName: 'fake',
     memoryLimitInMB: 'fake',
-    done(_error?: Error, _result?: unknown): void {},
-    fail(_error: Error | string): void {},
+    done: vi.fn(),
+    fail: vi.fn(),
+    succeed(_messageOrObject: unknown, _object?: unknown): void {},
     getRemainingTimeInMillis(): number {
       return 10000;
     },
-    succeed(_messageOrObject: unknown, _object?: unknown): void {},
   };
 }
 
@@ -50,5 +52,27 @@ export function getMockRequest(options: MockRequestOptions): Request {
 }
 
 export function getMockContext(): Context {
-  throw new Error('Not implemented')
+  return {
+    account: { id: 'fke' },
+    cookies: {
+      delete: vi.fn(),
+      get: vi.fn(),
+      set: vi.fn()
+    },
+    deploy: { id: 'fake' },
+    geo: {
+      city: 'fake',
+      country: {},
+      subdivision: {},
+    },
+    ip: '127.0.0.1',
+    json: vi.fn(),
+    log: vi.fn(),
+    next: vi.fn(),
+    params: {},
+    requestId: 'fake',
+    rewrite: vi.fn(),
+    server: { region: 'local' },
+    site: { id: undefined, name: undefined, url: 'http://localhost:8888' }
+  }
 }

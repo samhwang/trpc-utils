@@ -1,7 +1,8 @@
 import { Config, Context } from '@netlify/functions';
 
 export default async function (request: Request, context: Context) {
-  console.log({ request, context });
+  console.log('REQUEST')
+  console.log(request)
   return new Response('Hello World!');
 }
 
