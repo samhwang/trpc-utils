@@ -8,20 +8,25 @@ export interface CreateNetlifyContextV2Options {
   context: Context;
 }
 
-type NetlifyTRPCProps<TRouter extends AnyRouter> = BaseNetlifyTRPCProps<TRouter, Request, CreateNetlifyContextV2Options>;
+interface NetlifyTRPCProps<TRouter extends AnyRouter> extends BaseNetlifyTRPCProps<TRouter, Request, CreateNetlifyContextV2Options> {
+  config?: Config;
+}
 
 function nativeRequestToHTTPRequest(request: Request): HTTPRequest {
   throw new Error('Not Implemented');
 }
 
 function getTRPCPath(request: Request, configPath: Config['path'] = '/api/trpc'): string {
-  throw new Error('Not Implemented');
+  // throw new Error('Not Implemented');
+  const requestUrl = request.url;
+  if (!requestUrl.includes(configPath)) {
+  }
 }
 
-export function netlifyTRPCHandlerV2<TRouter extends AnyRouter>({ router, batching, createContext, responseMeta, onError }: NetlifyTRPCProps<TRouter>) {
+export function netlifyTRPCHandlerV2<TRouter extends AnyRouter>({ router, batching, createContext, responseMeta, onError, config }: NetlifyTRPCProps<TRouter>) {
   return async (request: Request, context: Context): Promise<Response> => {
     const req = nativeRequestToHTTPRequest(request);
-    const path = getTRPCPath(request, '/api/trpc');
+    const path = getTRPCPath(request, config.path);
 
     const httpResponse = await resolveHTTPResponse({
       router,
