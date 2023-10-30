@@ -58,7 +58,9 @@ export function createContext({ event, context }: CreateNetlifyContextOptions) {
 export type Context = inferAsyncReturnType<typeof createContext>;
 ```
 
-### Use this Netlify Functions Adapter.
+### Use this Netlify Functions Adapter
+
+#### With Netlify Functions v1 a.k.a the [Lambda Compatible Handler](https://docs.netlify.com/functions/lambda-compatibility/?fn-language=ts 'Netlify Functions - Lambda Compatibility')
 
 Create a file called `trpc.ts` inside your Netlify Functions folder. Default is: `[PROJECT_DIRECTORY]/netlify/functions`
 and add the adapter in like so.
